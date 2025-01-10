@@ -1,6 +1,7 @@
 import numpy as np
 import torch
 
+
 def split_image(im,height,width,x_step,y_step):
     src_im_height = im.shape[1]
     src_im_width = im.shape[2]
@@ -23,6 +24,7 @@ def split_image(im,height,width,x_step,y_step):
             top_left_corner_idxs.append((y_min, x_min))
     output_torch = torch.stack(output_torch)
     return output_torch, top_left_corner_idxs, (src_im_height, src_im_width)
+
 
 def stitch_images(im_arr, idx_refs=None, out_width=None,
                   out_height=None, method='average', use_GPU=True):
