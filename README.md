@@ -1,12 +1,14 @@
 <div align="center">
 
-# 2025 IEEE GRSS Data Fusion Contest
-## OpenEarthMap Land Cover Mapping Few-Shot Challenge </br> Generalized Few-shot Semantic Segmentation
-### Challenge proposed by the [Geoinformatics Team of RIKEN-AIP](https://geoinformatics2018.com/) and co-organized </br> with the [3rd L3D-IVU Workshop](https://sites.google.com/view/l3divu2024/overview) @ CVPR 2024 Conference
-
 <p><img src="docs/DFC2025_Logo.jpg"></p>
 </div>
 
+<div align="justify">
+<p>The 2025 IEEE GRSS Data Fusion Contest, organized by the Image Analysis and Data Fusion Technical Committee, the University of Tokyo, RIKEN, and ETH Zurich, aims to foster the development of innovative solutions for all-weather land cover and building damage mapping using multimodal SAR and optical EO data at submeter resolution. The contest comprises <b>two tracks</b>: <em>land cover mapping</em> and <em>building damage mapping</em>.</p>
+	
+<p>This repository contains the baseline model for the <b>Track 1 challenge: All-Weather Land Cover Mapping</b>.</p>
+</div>
+ 
 <div align="center">
 	
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
@@ -14,17 +16,15 @@
 ![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
 </div>
 
-##
+## Track 1: All-Weather Land Cover Mapping
 <div align="justify">
 <p>
-	We are excited to be seeing great ideas from across the globe working hard towards a better understanding of our environment. We look forward to having fun in our quest to obtain more 
-	accurate semantic segmentation maps for practical applications of few-shot learning in remote sensing image understanding.	
-	Let us come together to push the state-of-the-art generalized few-shot semantic segmentation (GFSS) learning methods to promote research in AI for social good.
+The Track 1 challenge focuses on developing methods for land cover mapping in all weather conditions using SAR data. The training data consists of multimodal submeter-resolution optical and SAR images with 8-class land cover labels. These labels are pseudo-labels derived from optical images based on pre-trained models. During the evaluation phase, models will rely exclusively on SAR to ensure they perform well in real-world, all-weather scenarios. It aims to improve the accuracy of land cover mapping under varying environmental conditions, demonstrating the utility of SAR data in monitoring land cover. The mean intersection over union (mIoU) metric is used to evaluate the performance.
 </p> 
 <p>
 	
 **Get involved! Check out the following links:** </br>
-- Challenge Webpage [https://cliffbb.github.io/OEM-Fewshot-Challenge/](https://cliffbb.github.io/OEM-Fewshot-Challenge/)
+- Challenge webpage [2025 IEEE GRSS Data Fusion Contest](https://www.grss-ieee.org/technical-committees/image-analysis-and-data-fusion/?tab=data-fusion-contest)
 - L3D-IVU Workshop @ CVPR 2024 Conference [https://sites.google.com/view/l3divu2024/overview](https://sites.google.com/view/l3divu2024/overview)
 - Dataset Download [https://zenodo.org/records/11396874](https://zenodo.org/records/11396874) 
 - ~Submission Portal [https://codalab.lisn.upsaclay.fr/competitions/17568](https://codalab.lisn.upsaclay.fr/competitions/17568).~
@@ -35,9 +35,7 @@
 ## Context
 <div align="justify">
 
-This repository contains the baseline model for the OpenEarthMap land cover mapping generalized few-shot semantic segmentation challenge. 
-The motivation is to enable researchers to develop and benchmark learning methods for generalized few-shot semantic segmentation of high-resolution remote sensing imagery. 
-The challenge is in two phases: the development phase is for developing and testing methods on a *valset*, and the evaluation phase is for tweaking and testing on a *testset* for final submission.
+ The motivation is to enable researchers to develop and benchmark learning methods for generalized few-shot semantic segmentation of high-resolution remote sensing imagery. The challenge is in two phases: the development phase is for developing and testing methods on a *valset*, and the evaluation phase is for tweaking and testing on a *testset* for final submission.
 
 </div>
 
