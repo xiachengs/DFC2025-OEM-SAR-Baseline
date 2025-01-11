@@ -8,8 +8,8 @@ results/
 *.pkl
 *.tar.gz
 *.npy
-*.pth
-*.pt
+# *.pth
+# *.pt
 *.png
 *.tif
 
