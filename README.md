@@ -13,37 +13,27 @@
 	
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
 <a href="https://pytorch.org/get-started/locally/"><img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-ee4c2c?logo=pytorch&logoColor=white"></a>
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 </div>
 
-## Track 1: All-Weather Land Cover Mapping
+## 2025 IEEE GRSS Data Fusion Contest Track 1 : All-Weather Land Cover Mapping
 <div align="justify">
 <p>
 The Track 1 challenge focuses on developing methods for land cover mapping in all weather conditions using SAR data. The training data consists of multimodal submeter-resolution optical and SAR images with 8-class land cover labels. These labels are pseudo-labels derived from optical images based on pre-trained models. During the evaluation phase, models will rely exclusively on SAR to ensure they perform well in real-world, all-weather scenarios. It aims to improve the accuracy of land cover mapping under varying environmental conditions, demonstrating the utility of SAR data in monitoring land cover. The mean intersection over union (mIoU) metric is used to evaluate the performance.
 </p> 
 <p>
-	
+
 **Get involved! Check out the following links:** </br>
 - Challenge webpage [2025 IEEE GRSS Data Fusion Contest](https://www.grss-ieee.org/technical-committees/image-analysis-and-data-fusion/?tab=data-fusion-contest)
-- L3D-IVU Workshop @ CVPR 2024 Conference [https://sites.google.com/view/l3divu2024/overview](https://sites.google.com/view/l3divu2024/overview)
-- Dataset Download [https://zenodo.org/records/11396874](https://zenodo.org/records/11396874) 
-- ~Submission Portal [https://codalab.lisn.upsaclay.fr/competitions/17568](https://codalab.lisn.upsaclay.fr/competitions/17568).~
-***The challenge is over, use the [post-challenge submission portal](https://codalab.lisn.upsaclay.fr/competitions/19210) to evaluate your predictions on the test set.***
+- Dataset download [https://zenodo.org/records/14622048](https://zenodo.org/records/14622048) 
+- Submission portal [https://codalab.lisn.upsaclay.fr/competitions/21121](https://codalab.lisn.upsaclay.fr/competitions/21121)
 </p>
-</div>
-
-## Context
-<div align="justify">
-
- The motivation is to enable researchers to develop and benchmark learning methods for generalized few-shot semantic segmentation of high-resolution remote sensing imagery. The challenge is in two phases: the development phase is for developing and testing methods on a *valset*, and the evaluation phase is for tweaking and testing on a *testset* for final submission.
-
 </div>
 
 ## Dataset
 <div align="justify">
 
-	
-This dataset extends the original 8 semantic classes of the [OpenEarthmap](https://open-earth-map.org/) benchmark dataset to 15 classes for **5-shot** generalized few-shot semantic segmentation (GFSS) task with **4 novel classes** and **7 base classes**. It consists of only 408 samples from the original OpenEarthMap dataset. The 408 samples are also split into 258 as *trainset*, 50 as *valset*, and 100 as *testset*. The *valset* is used for the development phase of the challenge, and the *testset* is for the evaluation phase. Both sets consist of *support_set* and *query_set* for GFSS tasks. A detailed description of the dataset can be found [here](https://zenodo.org/records/10828417), where it can also be downloaded. Below are examples of novel classes in the *support_set* (first two columns), and base classes + novel classes in the *query_set* (last two columns).
+The dataset for the Track 1 challenge is OpenEarthMap-SAR. The [OpenEarthMap-SAR](https://zenodo.org/records/14622048) is a synthetic aperture radar dataset benchmark with [OpenEarthMap](https://open-earth-map.org/) optical data for global high-resolution land cover mapping. It consists of 5033 images at a 0.15–0.5m ground sampling distance covering 35 regions from Japan, France and USA; and with partially manually annotated labels and fully pesudo labels of 8 land cover classes. A detailed description of the dataset can be found [here](https://zenodo.org/records/14622048), where it can also be downloaded. Below are examples of the OpenEarthMap-SAR dataset.
 
 <p><img src="docs/assets/img/fewshot-examples1.png"></p>
 </div>
@@ -128,6 +118,5 @@ For any scientific publication using this data, the following paper should be ci
 ## Acknowledgements
 <div align="justify">
 
-We are most grateful to the authors of [DIaM](https://github.com/sinahmr/DIaM?tab=readme-ov-file), [Semantic Segmentation PyTorch](https://github.com/qubvel/segmentation_models.pytorch?tab=readme-ov-file), 
-and [Catalyst](https://catalyst-team.com/) from which the baseline code is built on.
+We are most grateful to the authors of [Semantic Segmentation PyTorch](https://github.com/qubvel/segmentation_models.pytorch?tab=readme-ov-file) from which the baseline code is built on.
 </div>
