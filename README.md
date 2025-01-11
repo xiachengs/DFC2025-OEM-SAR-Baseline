@@ -46,8 +46,7 @@ The network was pretrained using the *train set* of the OpenEarthMap-SAR dataset
 ## Usage
 <div align="justify">
 
-The repository structure consists of a configuration file that can be found in `config/`; data splits for each set in `data/`; and  all the codes for the GFSS task are in `src/`. The testing script `test.sh` is at the root of the repo.
-The `docs` folder contains only GitHub page files.
+The repository structure consists of `dataset/train` and `dataset/test` for training and test data; a `pretrained/` folder for pretrained weights; and all source codes in the `source/`. The training and testing scripts, `train.py` and `test.py`, respectively, are at the root of the repo. The `docs` folder contains only GitHub page files.
 
 To use the baseline code, you first need to clone the repository and change your directory into the `OEM-Fewshot-Challenge` folder. Then follow the steps below:</br>
 1. Install all the requirements. `Python 3.9` was used in our experiments. Install the list of packages in the `requirements.txt` file using `pip install -r requirements.txt`.
