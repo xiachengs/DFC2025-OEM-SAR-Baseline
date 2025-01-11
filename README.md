@@ -46,23 +46,20 @@ The network was pretrained using the *train set* of the OpenEarthMap-SAR dataset
 ## Usage
 <div align="justify">
 
-The repository structure consists of `dataset/train` and `dataset/test` for training and test data; a `pretrained/` folder for pretrained weights; and all source codes in the `source/`. The training and testing scripts, `train.py` and `test.py`, respectively, are at the root of the repo. The `docs` folder contains only GitHub page files.
+The repository structure consists of `dataset/train` and `dataset/test` for training and test data; a `pretrained/` directory for pretrained weights; and all source codes in the `source/`. The training and testing scripts, `train.py` and `test.py`, respectively, are at the root of the repo. The `docs` directory contains only GitHub page files.
 
-To use the baseline code, you first need to clone the repository and change your directory into the `OEM-Fewshot-Challenge` folder. Then follow the steps below:</br>
-1. Install all the requirements. `Python 3.9` was used in our experiments. Install the list of packages in the `requirements.txt` file using `pip install -r requirements.txt`.
-2. Download the dataset from [here](https://zenodo.org/records/10591939) into a directory that you set in the config file `oem.yaml`
-3. Download the pretrained weights from [here](https://drive.google.com/file/d/1Myd8b2KVFRuYVPyjB6EAv70OsNmjtgB9/view?usp=sharing) into a directory that you set in the config file `oem.yaml`
-4. In the `oem.yaml` you need to set only the paths for the dataset and the pretrained weights. The other settings need not be changed to reproduce the results.
-5. Test the model by running the `test.sh` script as mentioned in the **Baseline** section. The script will use the *support_set* to adapt and predict the segmentation maps of the *query_set*. After running the script, the results are provided in a `results` folder which contains a `.txt` file of the IoUs and mIoUs, and a `preds` and `targets` folder for the predicted and the targets maps, respectively.
+To use the baseline code, first, clone the repository and change your directory into the `DFC2025-OEM-SAR-Baseline` folder. Then follow the steps below:</br>
+1. Install all the requirements. `Python 3.8` was used in our experiments. Install the list of packages in the `requirements.txt` file using `pip install -r requirements.txt`.
+2. Download the dataset from [here](https://zenodo.org/records/14622048) into the respective directories: `dataset/train` and `dataset/test`
+3. Download the pretrained weights from [here](https://drive.google.com/file/d/1Myd8b2KVFRuYVPyjB6EAv70OsNmjtgB9/view?usp=sharing) into the `pretrained` directory
 
-You can pretrained your model using the *trainset* and any simple training scheme of your choice. The baseline paper used the [`train_base.py`](https://github.com/chunbolang/BAM/blob/main/train_base.py) script and base learner models of [BAM](https://github.com/chunbolang/BAM) (see the [baseline paper](https://github.com/sinahmr/DIaM?tab=readme-ov-file) for more info).
-
-
- Then, the state-of-the-art framework called [distilled information maximization](https://arxiv.org/abs/2211.14126) 
-(DIaM) was adopted to perform the GFSS task. The code in this repository contains only the GFSS portion. As mentioned by the baseline authors, any pretrained model can be used with their framework. 
-The code was adopted from [here](https://github.com/sinahmr/DIaM?tab=readme-ov-file). To run the code on the *valset*, simply clone this repository and change your directory into the `OEM-Fewshot-Challenge` folder which contains the code files. Then from a terminal, run the `test.sh` script. as:
+Test the model with the pretrained weights by running the script `test.py` as:
 ```bash
-bash test.sh 
+python test.py
+```
+To train the model, run `train.py` as:
+```bash
+python train.py
 ```
 </div>
 
