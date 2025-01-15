@@ -5,9 +5,10 @@
 
 <div align="justify">
 <p>The 2025 IEEE GRSS Data Fusion Contest, organized by the Image Analysis and Data Fusion Technical Committee, the University of Tokyo, RIKEN, and ETH Zurich, aims to foster the development of innovative solutions for all-weather land cover and building damage mapping using multimodal SAR and optical EO data at submeter resolution. The contest comprises <b>two tracks</b>: <em>land cover mapping</em> and <em>building damage mapping</em>.
-This repository contains the baseline model for the <b>Track 1 challenge: All-Weather Land Cover Mapping</b>.</p>
+This repository contains the baseline model for the <b>Track 1 challenge: All-Weather Land Cover Mapping</b>. Check out <a href="https://github.com/ChenHongruixuan/BRIGHT">here</a> for the<b> Track 2: All-weather building damage mapping</b> info.</p>
 </div>
- 
+  
+  
 <div align="center">
 	
 [![GitHub license](https://badgen.net/github/license/Naereen/Strapdown.js)](https://github.com/Naereen/StrapDown.js/blob/master/LICENSE)
@@ -15,10 +16,10 @@ This repository contains the baseline model for the <b>Track 1 challenge: All-We
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
 </div>
 
-## 2025 IEEE GRSS Data Fusion Contest Track 1 : All-Weather Land Cover Mapping
+## 2025 IEEE GRSS Data Fusion Contest Track 1: All-Weather Land Cover Mapping
 <div align="justify">
 <p>
-The Track 1 challenge focuses on developing methods for land cover mapping in all weather conditions using SAR data. The training data consists of multimodal submeter-resolution optical and SAR images with 8-class land cover labels. These labels are pseudo-labels derived from optical images based on pre-trained models. During the evaluation phase, models will rely exclusively on SAR to ensure they perform well in real-world, all-weather scenarios. It aims to improve the accuracy of land cover mapping under varying environmental conditions, demonstrating the utility of SAR data in monitoring land cover. The mean intersection over union (mIoU) metric is used to evaluate the performance.
+The Track 1 challenge focuses on developing methods for land cover mapping in all weather conditions using SAR data. The training data consists of multimodal submeter-resolution optical and SAR images with 8-class land cover labels. These labels are pseudo-labels derived from optical images based on pre-trained models. During the evaluation phase, models will rely exclusively on SAR to ensure they perform well in real-world, all-weather scenarios. It aims to improve the accuracy of land cover mapping under varying environmental conditions, demonstrating the utility of SAR data in monitoring land cover. The mean intersection over union (mIoU) metric is used to evaluate the performance. 
 </p> 
 <p>
 
