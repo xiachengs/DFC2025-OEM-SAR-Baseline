@@ -67,15 +67,15 @@ python train.py
 ## Citation
 <div align="justify">
 For any scientific publication using this data, the following paper should be cited:
-<!--<pre style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">
-@misc{bronibediako2024GFSS,
-      title={Generalized Few-Shot Semantic Segmentation in Remote Sensing: Challenge and Benchmark}, 
-      author={Clifford Broni-Bediako and Junshi Xia and Jian Song and Hongruixuan Chen and Mennatullah Siam and Naoto Yokoya},
-      year={2024},
-      note={arXiv:2409.11227},
-      url={https://arxiv.org/abs/2409.11227}, 
+<pre style="white-space: pre-wrap; white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap; word-wrap: break-word;">
+@misc{xia_2025_oem_sar,
+      title={OpenEarthMap-SAR: A Benchmark Synthetic Aperture Radar Dataset for Global High-Resolution Land Cover Mapping}, 
+      author={Junshi Xia, Hongruixuan Chen, Clifford Broni-Bediako, Yimin Wei, Jian Song, and Naoto Yokoya},
+      year={2025},
+      note={arXiv:2501.10891},
+      url={ https://arxiv.org/abs/2501.10891}, 
 }
-</pre>-->
+</pre>
 </div>
 
 ## Acknowledgements
