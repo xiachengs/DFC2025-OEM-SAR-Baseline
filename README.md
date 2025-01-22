@@ -73,7 +73,7 @@ For any scientific publication using this data, the following paper should be ci
       author={Junshi Xia, Hongruixuan Chen, Clifford Broni-Bediako, Yimin Wei, Jian Song, and Naoto Yokoya},
       year={2025},
       note={arXiv:2501.10891},
-      url={ https://arxiv.org/abs/2501.10891}, 
+      url={https://arxiv.org/abs/2501.10891}, 
 }
 </pre>
 </div>
