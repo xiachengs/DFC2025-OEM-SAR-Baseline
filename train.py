@@ -125,9 +125,9 @@ def main(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Model Training')
     parser.add_argument('--seed', default=0)
-    parser.add_argument('--n_epochs', default=1)
-    parser.add_argument('--batch_size', default=1)
-    parser.add_argument('--num_workers', default=4)
+    parser.add_argument('--n_epochs', default=50)
+    parser.add_argument('--batch_size', default=8)
+    parser.add_argument('--num_workers', default=8)
     parser.add_argument('--crop_size', default=512)
     parser.add_argument('--learning_rate', default=0.0001)  
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
