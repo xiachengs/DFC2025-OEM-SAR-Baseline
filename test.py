@@ -58,7 +58,7 @@ def test_model(args, model, device):
     # path to save predictions
     os.makedirs(args.save_results, exist_ok=True)
     # load test data
-    test_fns = [f for f in Path(args.data_root).rglob("*.tif") if "/sar_images/" in str(f)]
+    test_fns = [f for f in Path(args.data_root).rglob("*.tif")]
     
     for fn_img in test_fns:
         img = source.dataset.load_grayscale(fn_img)
@@ -86,7 +86,7 @@ def test_model(args, model, device):
         y_pr = cv2.resize(pred, (w, h), interpolation=cv2.INTER_NEAREST)
         # save image as png
         filename = os.path.splitext(os.path.basename(fn_img))[0]
-        # y_pr_rgb = label2rgb(y_pr)
+        y_pr_rgb = label2rgb(y_pr)
         Image.fromarray(y_pr).save(os.path.join(args.save_results, filename+'.png'))
         print('Processed file:', filename+'.png')
     print("Done!")
@@ -122,8 +122,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Model Training')
     parser.add_argument('--seed', default=0)
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
-    parser.add_argument('--data_root', default="dataset/test")
-    parser.add_argument('--pretrained_model', default="pretrained/SAR_Pesudo_u-efficientnet-b4_s0_CELoss.pth") 
+    parser.add_argument('--data_root', default="dataset/val/sar_images")
+    parser.add_argument('--pretrained_model', default="pretrained/SAR_Pesudo_u-efficientnet-b4_s0_CELoss.pth")
+    # parser.add_argument('--pretrained_model', default="pretrained/SAR_Pesudo_u-efficientnet-b4_s0_CELoss.pth")
     parser.add_argument('--save_results', default="results")
     args = parser.parse_args()
     

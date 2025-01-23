@@ -10,23 +10,23 @@ import source
 import segmentation_models_pytorch as smp
 import argparse
 import warnings
+from source.mit_unet.network_mit_unet import Net
 warnings.filterwarnings("ignore")
 
 
 def data_loader(args):
     # get all image paths with ".tif" and "/labels/" in the path
-    img_pths = [f for f in Path(args.data_root).rglob("*.tif") if "/labels/" in str(f)]
+    train_pths = [f for f in Path(args.train_data_root).rglob("*.tif")]
+    val_pths = [f for f in Path(args.val_data_root).rglob("*.tif")]
     # Shuffle the paths to randomize the selection
-    random.shuffle(img_pths)
-    # split data: 90% training and 10% validation
-    split_idx= int(0.9 * len(img_pths))  
-    train_pths = img_pths[:split_idx]
-    val_pths = img_pths[split_idx:]
+    # random.shuffle(img_pths)
+    # # split data: 90% training and 10% validation
+    # split_idx= int(0.9 * len(img_pths))
     # convert paths to strings (if needed)
     train_pths = [str(f) for f in train_pths]
     val_pths = [str(f) for f in val_pths]
     
-    print("Total samples      :", len(img_pths))
+    # print("Total samples      :", len(img_pths))
     print("Training samples   :", len(train_pths))
     print("Validation samples :", len(val_pths))
 
@@ -91,14 +91,7 @@ def main(args):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     
     # using UNet with EfficientNet-B4 backbone
-    model = smp.Unet(
-        classes=len(args.classes)+1,
-        in_channels=1,
-        activation=None,
-        encoder_weights="imagenet",
-        encoder_name="efficientnet-b4",
-        decoder_attention_type="scse",
-    )
+    model = Net(pretrained=True).cuda(device=0)
     
     # count parameters
     params = 0
@@ -132,13 +125,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Model Training')
     parser.add_argument('--seed', default=0)
     parser.add_argument('--n_epochs', default=1)
-    parser.add_argument('--batch_size', default=8)
-    parser.add_argument('--num_workers', default=8)
+    parser.add_argument('--batch_size', default=1)
+    parser.add_argument('--num_workers', default=4)
     parser.add_argument('--crop_size', default=512)
     parser.add_argument('--learning_rate', default=0.0001)  
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
-    parser.add_argument('--data_root', default="dataset/train")
-    parser.add_argument('--save_model', default="model") 
+    parser.add_argument('--train_data_root', default="dataset/train/sar_images")
+    parser.add_argument('--val_data_root', default="dataset/val/sar_images")
+    parser.add_argument('--save_model', default="model")
     parser.add_argument('--save_results', default="results")
     args = parser.parse_args()
     
