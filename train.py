@@ -13,6 +13,10 @@ import warnings
 from source.mit_unet.network_mit_unet import Net
 warnings.filterwarnings("ignore")
 
+class NamedDataParallel(torch.nn.DataParallel):
+    def __init__(self, module, device_ids=None, output_device=None, dim=0, name=""):
+        super(NamedDataParallel, self).__init__(module, device_ids, output_device, dim)
+        self.name = name
 
 def data_loader(args):
     # get all image paths with ".tif" and "/labels/" in the path
@@ -37,15 +41,13 @@ def data_loader(args):
     
     return train_loader, valid_loader
 
-    
 def train_model(args, model, optimizer, criterion, metric, device):
     # get dataset loaders
     train_data_loader, val_data_loader = data_loader(args)
     
     # create folder to save model
     os.makedirs(args.save_model, exist_ok=True)
-    # model_name = f"SAR_Pesudo_{model.name}_s{args.seed}_{criterion.name}"
-    model_name = "SAR"
+    model_name = f"SAR_Pesudo_{model.name}_s{args.seed}_{criterion.name}"
 
     max_score = 0
     train_hist = []
@@ -108,7 +110,7 @@ def main(args):
         
     if torch.cuda.device_count() > 1:
         print("Number of GPUs :", torch.cuda.device_count())
-        model = torch.nn.DataParallel(model)
+        model = NamedDataParallel(model, name="DataParallel")
         optimizer = torch.optim.Adam(
             [dict(params=model.module.parameters(), lr=args.learning_rate)]
         )
