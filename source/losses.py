@@ -45,5 +45,5 @@ class CEWithLogitsLoss(nn.Module):
         self.name = "CELoss"
 
     def forward(self, input, target):
-        loss = self.criterion(input, target.argmax(dim=1))
+        loss = self.criterion(input, target)
         return loss

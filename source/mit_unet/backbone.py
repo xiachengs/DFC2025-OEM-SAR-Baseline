@@ -634,7 +634,7 @@ class MixVisionTransformer(nn.Module):
         # )
 
         self.mlp = nn.Linear(embed_dims[0], embed_dims[0] * 4)
-        self.last_conv = nn.Conv2d(embed_dims[0] * 4, 8, 1)
+        self.last_conv = nn.Conv2d(embed_dims[0] * 4, 9, 1)
         self.apply(self._init_weights)
 
         # self.depth_conv1 = nn.Sequential(
