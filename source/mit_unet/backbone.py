@@ -432,7 +432,7 @@ class Block(nn.Module):
         return x
 
 class MixVisionTransformer(nn.Module):
-    def __init__(self, in_chans=3, num_classes=1000, embed_dims=[32, 64, 160, 256],
+    def __init__(self, in_chans=1, num_classes=1000, embed_dims=[32, 64, 160, 256],
                  num_heads=[1, 2, 4, 8], mlp_ratios=[4, 4, 4, 4], qkv_bias=False, qk_scale=None, drop_rate=0.,
                  attn_drop_rate=0., drop_path_rate=0., norm_layer=nn.LayerNorm,
                  depths=[3, 4, 6, 3], sr_ratios=[8, 4, 2, 1]):
