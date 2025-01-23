@@ -24,9 +24,10 @@ The Track 1 challenge focuses on developing methods for land cover mapping in al
 <p>
 
 **Get involved! Check out the following links:** </br>
-- Challenge webpage [2025 IEEE GRSS Data Fusion Contest](https://www.grss-ieee.org/technical-committees/image-analysis-and-data-fusion/?tab=data-fusion-contest)
-- Dataset download [https://zenodo.org/records/14622048](https://zenodo.org/records/14622048) 
-- Submission portal [https://codalab.lisn.upsaclay.fr/competitions/21121](https://codalab.lisn.upsaclay.fr/competitions/21121)
+☀️ Challenge webpage [2025 IEEE GRSS Data Fusion Contest](https://www.grss-ieee.org/technical-committees/image-analysis-and-data-fusion/?tab=data-fusion-contest) </br>
+☀️ Dataset download [https://zenodo.org/records/14622048](https://zenodo.org/records/14622048) </br>
+☀️ Submission portal [https://codalab.lisn.upsaclay.fr/competitions/21121](https://codalab.lisn.upsaclay.fr/competitions/21121) </br>
+☀️ OpenEarthMap-SAR dataset [paper](https://arxiv.org/abs/2501.10891)
 </p>
 </div>
 
