@@ -132,7 +132,7 @@ if __name__ == "__main__":
     parser.add_argument('--crop_size', default=512)
     parser.add_argument('--learning_rate', default=0.0001)  
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
-    parser.add_argument('--train_data_root', default="/kaggle/input/dfc25-track1-trainval")
+    parser.add_argument('--train_data_root', default="/kaggle/input/dfc25-track1-trainval/train/labels")
     # parser.add_argument('--val_data_root', default="dataset/val/sar_images")
     parser.add_argument('--save_model', default="weight")
     parser.add_argument('--save_results', default="results")
