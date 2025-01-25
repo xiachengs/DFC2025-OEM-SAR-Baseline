@@ -40,8 +40,7 @@ def data_loader(args):
     train_loader = DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
     valid_loader = DataLoader(validset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
     
-    # return train_loader, valid_loader
-    return train_loader
+    return train_loader, valid_loader
 
 def train_model(args, model, optimizer, criterion, metric, device):
     # get dataset loaders
