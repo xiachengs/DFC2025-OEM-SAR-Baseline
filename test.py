@@ -11,6 +11,7 @@ import warnings
 from pathlib import Path
 import source
 import segmentation_models_pytorch as smp
+from source.mit_unet.network_mit_unet import Net
 
 warnings.filterwarnings("ignore")
 
@@ -56,7 +57,7 @@ def label2rgb(a):
 
 def test_model(args, model, device):
     # path to save predictions
-    os.makedirs(args.save_results, exist_ok=True)
+    os.makedirs(args.save_gray_results, exist_ok=True)
     # load test data
     test_fns = [f for f in Path(args.data_root).rglob("*.tif")]
     
@@ -83,11 +84,12 @@ def test_model(args, model, device):
             pred = (msk[0, :, :, :] + msk[1, :, :, ::-1] + msk[2, :, ::-1, :] + msk[3, :, ::-1, ::-1])/4
         pred = pred.argmax(axis=0).astype("uint8")
 
-        y_pr = cv2.resize(pred, (w, h), interpolation=cv2.INTER_NEAREST)
+        y_pr_gray = cv2.resize(pred, (w, h), interpolation=cv2.INTER_NEAREST)
         # save image as png
         filename = os.path.splitext(os.path.basename(fn_img))[0]
-        y_pr_rgb = label2rgb(y_pr)
-        Image.fromarray(y_pr).save(os.path.join(args.save_results, filename+'.png'))
+        y_pr_rgb = label2rgb(y_pr_gray)
+        Image.fromarray(y_pr_gray).save(os.path.join(args.save_gray_results, filename+'.png'))
+        Image.fromarray(y_pr_rgb).save(os.path.join(args.save_rgb_results, filename+'.png'))
         print('Processed file:', filename+'.png')
     print("Done!")
     print("Total files processed: ", len(test_fns))
@@ -103,15 +105,35 @@ def main(args):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     
     n_classes = len(args.classes)+1
-    model = smp.Unet(
-        classes=n_classes,
-        in_channels = 1,
-        activation=None,
-        encoder_weights="imagenet",
-        encoder_name="efficientnet-b4",
-        decoder_attention_type="scse",
-    )
-    model.load_state_dict(torch.load(args.pretrained_model))
+    # model = smp.Unet(
+    #     classes=n_classes,
+    #     in_channels = 1,
+    #     activation=None,
+    #     encoder_weights="imagenet",
+    #     encoder_name="efficientnet-b4",
+    #     decoder_attention_type="scse",
+    # )
+    model = Net(pretrained=False)
+    # model.load_state_dict(torch.load(args.pretrained_model))
+    pretrained_weight = "weight/SAR_Pesudo_DataParallel_s0_CELoss.pth"
+    state_dict = model.state_dict()
+    model_dict = {}
+    load_key, no_load_key = [], []
+    pretrain_dict = torch.load(pretrained_weight, map_location=f"cuda:0")
+    pretrain_dict_items = pretrain_dict.items() if "state_dict" not in pretrain_dict else pretrain_dict["state_dict"].items()
+    for k, v in pretrain_dict_items:
+        k = k[7:]
+        if k in state_dict and v.shape == state_dict[k].shape:
+            model_dict[k] = v
+            load_key.append(k)
+        else:
+            no_load_key.append(k)
+    state_dict.update(model_dict)
+    model.load_state_dict(state_dict, strict=False)
+    print(f"Loading pretrained weight: '{pretrained_weight}' done.")
+    print("\nSuccessful Load Key:", str(load_key)[:500], "……\nSuccessful Load Key Num:", len(load_key))
+    print("\nFail To Load Key:", str(no_load_key)[:500], "……\nFail To Load Key num:", len(no_load_key))
+
     model.to(device).eval()
     
     # test model
@@ -123,9 +145,9 @@ if __name__ == "__main__":
     parser.add_argument('--seed', default=0)
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
     parser.add_argument('--data_root', default="dataset/val/sar_images")
-    parser.add_argument('--pretrained_model', default="pretrained/SAR_Pesudo_u-efficientnet-b4_s0_CELoss.pth")
-    # parser.add_argument('--pretrained_model', default="pretrained/SAR_Pesudo_u-efficientnet-b4_s0_CELoss.pth")
-    parser.add_argument('--save_results', default="results")
+    parser.add_argument('--pretrained_model', default="weight/SAR_Pesudo_DataParallel_s0_CELoss.pth")
+    parser.add_argument('--save_gray_results', default="results/gray")
+    parser.add_argument('--save_rgb_results', default="results/rgb")
     args = parser.parse_args()
     
     start = time.time()

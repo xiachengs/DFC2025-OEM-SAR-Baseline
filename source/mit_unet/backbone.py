@@ -114,8 +114,8 @@ class OverlapPatchExpand(nn.Module):
 
     def forward(self, x, y):
         shape = y.shape[2:]
-        # x = self.proj_x(x) + nn.functional.interpolate(self.conv_1x1(x), shape)
-        x = self.proj_x(x)
+        x = self.proj_x(x) + nn.functional.interpolate(self.conv_1x1(x), shape)
+        # x = self.proj_x(x)
         y = self.proj_y(y)
         z = torch.cat([x, y], dim=1)
         _, _, H, W = z.shape
