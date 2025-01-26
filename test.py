@@ -115,7 +115,7 @@ def main(args):
     # )
     model = Net(pretrained=False)
     # model.load_state_dict(torch.load(args.pretrained_model))
-    pretrained_weight = "weight/SAR_Pesudo_DataParallel_s0_CELoss.pth"
+    pretrained_weight = args.pretrained_weight
     state_dict = model.state_dict()
     model_dict = {}
     load_key, no_load_key = [], []
@@ -145,7 +145,7 @@ if __name__ == "__main__":
     parser.add_argument('--seed', default=0)
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
     parser.add_argument('--data_root', default="dataset/val/sar_images")
-    parser.add_argument('--pretrained_model', default="weight/SAR_Pesudo_DataParallel_s0_CELoss.pth")
+    parser.add_argument('--pretrained_weight', default="weight/SAR_Pesudo_DataParallel_b2_CELoss.pth")
     parser.add_argument('--save_gray_results', default="results/gray")
     parser.add_argument('--save_rgb_results', default="results/rgb")
     args = parser.parse_args()
