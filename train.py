@@ -95,8 +95,10 @@ def main(args):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     
     # using UNet with EfficientNet-B4 backbone
-    model = Net(pretrained=True).cuda(device=0)
-    
+    model = Net(pretrained=True,
+                phi=args.phi,
+                num_classes=args.num_classes+1)
+    model.to(device)
     # count parameters
     params = 0
     for p in model.parameters():
@@ -132,7 +134,9 @@ if __name__ == "__main__":
     parser.add_argument('--batch_size', default=8)
     parser.add_argument('--num_workers', default=8)
     parser.add_argument('--crop_size', default=512)
-    parser.add_argument('--learning_rate', default=0.0001)  
+    parser.add_argument('--phi', default="b0")
+    parser.add_argument('--num_classes', default=8)
+    parser.add_argument('--learning_rate', default=0.0001)
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
     # parser.add_argument('--data_root', default="/kaggle/input/dfc25-track1-trainval/train/labels")
     parser.add_argument('--data_root', default="dataset/train/labels/")

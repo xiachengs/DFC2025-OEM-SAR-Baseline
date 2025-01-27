@@ -5,15 +5,16 @@ import yaml
 from .segformer import SegFormer
 
 class Net(nn.Module):
-    def __init__(self, phi="b0", pretrained=True, num_classes=1):
+    def __init__(self, phi=None, pretrained=True, num_classes=1000):
         super(Net, self).__init__()
         self.segFormer = SegFormer(phi=phi, num_classes=num_classes)
         self.name = "MiT-Unet"
+        self.phi = phi
         if pretrained==True:
-            self.load_pretrained_model(self.segFormer)
+            self.load_pretrained_model(self.segFormer, self.phi)
 
-    def load_pretrained_model(self, model):
-        pretrained_weight = "pretrained/mit_b0.pth"
+    def load_pretrained_model(self, model, phi=None):
+        pretrained_weight = f"pretrained/mit_{phi}.pth"
         state_dict = model.state_dict()
         model_dict = {}
         load_key, no_load_key = [], []

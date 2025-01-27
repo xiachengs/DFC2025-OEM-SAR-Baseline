@@ -42,7 +42,7 @@ class SegFormerHead(nn.Module):
     SegFormer: Simple and Efficient Design for Semantic Segmentation with Transformers
     """
 
-    def __init__(self, num_classes=20, in_channels=[32, 64, 160, 256], embedding_dim=768, dropout_ratio=0.1):
+    def __init__(self, num_classeses=20, in_channels=[32, 64, 160, 256], embedding_dim=768, dropout_ratio=0.1):
         super(SegFormerHead, self).__init__()
         c1_in_channels, c2_in_channels, c3_in_channels, c4_in_channels = in_channels
 
@@ -56,7 +56,7 @@ class SegFormerHead(nn.Module):
             c2=embedding_dim,
             k=1,
         )
-        self.linear_pred = nn.Conv2d(embedding_dim, num_classes, kernel_size=1)
+        self.linear_pred = nn.Conv2d(embedding_dim, num_classeses, kernel_size=1)
         self.dropout = nn.Dropout2d(dropout_ratio)
 
     def forward(self, inputs):
@@ -84,7 +84,7 @@ class SegFormerHead(nn.Module):
         return x
 
 class SegFormer(nn.Module):
-    def __init__(self, num_classes = 21, phi = 'b0', pretrained = False):
+    def __init__(self, num_classes = 1000, phi = 'b0', pretrained = False):
         super(SegFormer, self).__init__()
         self.in_channels = {
             'b0': [32, 64, 160, 256], 'b1': [64, 128, 320, 512], 'b2': [64, 128, 320, 512],
@@ -93,12 +93,12 @@ class SegFormer(nn.Module):
         self.backbone   = {
             'b0': mit_b0, 'b1': mit_b1, 'b2': mit_b2,
             'b3': mit_b3, 'b4': mit_b4, 'b5': mit_b5,
-        }[phi](pretrained)
+        }[phi](num_classes)
         self.embedding_dim   = {
             'b0': 256, 'b1': 256, 'b2': 768,
             'b3': 768, 'b4': 768, 'b5': 768,
         }[phi]
-        self.decode_head = SegFormerHead(num_classes, self.in_channels, self.embedding_dim)
+        # self.decode_head = SegFormerHead(num_classes, self.in_channels, self.embedding_dim)
 
     def forward(self, inputs):
         # H, W = inputs.size(2), inputs.size(3)
