@@ -37,8 +37,8 @@ def data_loader(args):
 
     trainset = source.dataset.Dataset(train_pths, classes=args.classes, size=args.crop_size, train=True)
     validset = source.dataset.Dataset(val_pths, classes=args.classes, train=False)
-    train_loader = DataLoader(trainset, batch_size=args.batch_size, shuffle=True, num_workers=args.num_workers)
-    valid_loader = DataLoader(validset, batch_size=args.batch_size, shuffle=False, num_workers=args.num_workers)
+    train_loader = DataLoader(trainset, batch_size=int(args.batch_size), shuffle=True, num_workers=args.num_workers)
+    valid_loader = DataLoader(validset, batch_size=int(args.batch_size), shuffle=False, num_workers=args.num_workers)
     
     return train_loader, valid_loader
 
@@ -120,7 +120,7 @@ def main(args):
     
     print("Number of epochs   :", args.n_epochs)
     print("Number of classes  :", len(args.classes)+1)
-    print("Batch size         :", args.batch_size)
+    print("Batch size         :", int(args.batch_size)
     print("Device             :", device)
                
     # training model

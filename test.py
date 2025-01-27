@@ -113,7 +113,9 @@ def main(args):
     #     encoder_name="efficientnet-b4",
     #     decoder_attention_type="scse",
     # )
-    model = Net(pretrained=False)
+    model = Net(pretrained=False,
+                phi=args.phi,
+                num_classes=args.num_classes + 1)
     # model.load_state_dict(torch.load(args.pretrained_model))
     pretrained_weight = args.pretrained_weight
     state_dict = model.state_dict()
@@ -144,8 +146,10 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Model Training')
     parser.add_argument('--seed', default=0)
     parser.add_argument('--classes', default=[1, 2, 3, 4, 5, 6, 7, 8])
+    parser.add_argument('--phi', default="b0")
+    parser.add_argument('--num_classes', default=8)
     parser.add_argument('--data_root', default="dataset/val/sar_images")
-    parser.add_argument('--pretrained_weight', default="weight/SAR_Pesudo_DataParallel_b2_CELoss.pth")
+    parser.add_argument('--pretrained_weight', default="weight/SAR_Pesudo_DataParallel_b0_zq_CELoss.pth")
     parser.add_argument('--save_gray_results', default="results/gray")
     parser.add_argument('--save_rgb_results', default="results/rgb")
     args = parser.parse_args()
