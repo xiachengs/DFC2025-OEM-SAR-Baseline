@@ -120,7 +120,7 @@ def main(args):
     
     print("Number of epochs   :", args.n_epochs)
     print("Number of classes  :", len(args.classes)+1)
-    print("Batch size         :", int(args.batch_size)
+    print("Batch size         :", int(args.batch_size))
     print("Device             :", device)
                
     # training model
